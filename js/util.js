@@ -69,7 +69,6 @@ export const util = (() => {
         div.classList.add('m-2');
         div.innerHTML = `<p class="mt-0 mb-1 mx-0 p-0 text-light">${guest.getAttribute('data-message')}</p><h2 class="text-light">${escapeHtml(name)}</h2>`;
 
-        document.getElementById('form-name').value = name;
         guest.appendChild(div);
     };
 
@@ -230,33 +229,10 @@ export const util = (() => {
     };
 
     const init = () => {
-        const token = document.querySelector('body').getAttribute('data-key');
-
         countDownDate();
-        if (storage('information').get('info')) {
-            document.getElementById('information')?.remove();
-        }
-
-        if (!token || token.length === 0) {
-            document.getElementById('ucapan')?.remove();
-            document.querySelector('a.nav-link[href="#ucapan"]')?.closest('li.nav-item')?.remove();
-            return;
-        }
-
-        const config = storage('config');
-
-        request(HTTP_GET, '/api/config')
-            .token(token)
-            .then((res) => {
-                for (let [key, value] of Object.entries(res.data)) {
-                    config.set(key, value);
-                }
-
-                comment.comment();
-            });
-
-        storage('session').set('token', token);
     };
+    
+
 
     return {
         init,

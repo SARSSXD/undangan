@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     util.init();
     audio.init();
     theme.check();
-    comment.init();
+    // comment.init(); // Hapus atau komentar baris ini
     progress.init();
     pagination.init();
     window.AOS.init();
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.like = like;
     window.theme = theme;
     window.audio = audio;
-    window.comment = comment;
+    // window.comment = comment; // Hapus atau komentar baris ini
     window.pagination = pagination;
 });
+
