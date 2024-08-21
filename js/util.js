@@ -59,18 +59,27 @@ export const util = (() => {
     const guest = () => {
         const name = (new URLSearchParams(window.location.search)).get('to');
         const guest = document.getElementById('guest-name');
-
+    
         if (!name) {
             guest.remove();
             return;
         }
-
+    
+        // Membuat elemen baru
         const div = document.createElement('div');
         div.classList.add('m-2');
-        div.innerHTML = `<p class="mt-0 mb-1 mx-0 p-0 text-light">${guest.getAttribute('data-message')}</p><h2 class="text-light">${escapeHtml(name)}</h2>`;
-
+        
+        // Menentukan warna teks berdasarkan tema aktif
+        const textColorClass = document.body.classList.contains('bg-theme-light') ? 'text-light-theme' : 'text-dark-theme';
+    
+        div.innerHTML = `
+            <p class="mt-0 mb-1 mx-0 p-0 ${textColorClass}">${guest.getAttribute('data-message')}</p>
+            <h2 class="${textColorClass}">${escapeHtml(name)}</h2>
+        `;
+    
         guest.appendChild(div);
     };
+    
 
     const show = () => {
         const duration = 2 * 1000;
